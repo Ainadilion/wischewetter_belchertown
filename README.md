@@ -7,7 +7,7 @@ sowie zur Anzeige von Frost- und Schwülebedingungen.
 ## Module
 
 ### 🎨 Farben der Wetterwerte
-Kachelmann-ähnliche Farbschemata für:
+Farbschemata für:
 
 - Außentemperatur
 - Max / Min Temperatur
@@ -22,7 +22,7 @@ Kachelmann-ähnliche Farbschemata für:
 - Äquivalenztemperatur
 - Pot. Äquivalenztemperatur
 
-➡️ Details: [`colors/README-colors.md`](colors/README-colors.md)
+➡️ Details: [`Farben-Wetterwerte/README-Farben.md`](Farben-Wetterwerte/README-Farben.md)
 
 ---
 
