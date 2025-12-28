@@ -1,132 +1,72 @@
-# wischewetter_belchertown
-die Belchertown-Oberfläche von wischewetter
+# weewx Belchertown Weather Enhancements
 
-# WeeWX Belchertown – Frost- & Schwüle-Anzeige ❄️💧
+Erweiterungen für das weewx Belchertown Skin zur
+farblichen Darstellung meteorologischer Werte
+sowie zur Anzeige von Frost- und Schwülebedingungen.
 
-Diese Erweiterung für den **Belchertown-Skin von WeeWX** zeigt auf der Startseite
-eine kombinierte **Frost- und Schwüle-Bewertung** an.
+## Module
 
-Die Anzeige erscheint automatisch:
+### 🎨 Farben der Wetterwerte
+Kachelmann-ähnliche Farbschemata für:
 
-➡️ **unterhalb** „Aktuelles Wetter in …“  
-➡️ **oberhalb** „Zuletzt aktualisiert“
+- Außentemperatur
+- Max / Min Temperatur
+- Taupunkt
+- Luftdruck
+- Luftfeuchte
+- Regenrate
+- Wind / Böen
+- UV-Index
+- Solarstrahlung
+- Evapotranspiration
+- Äquivalenztemperatur
+- Pot. Äquivalenztemperatur
 
-Sie aktualisiert sich dynamisch zusammen mit den WeeWX-AJAX-Daten.
-
----
-
-## 🔹 Funktionen
-
-### ❄️ Frostklassifikation (nach Temperatur)
-
-| Außentemperatur | Anzeige |
-|-----------------|---------|
-| ≥ 0 °C | kein Frost |
-| < 0 °C bis –5 °C | ❄ leichter Frost |
-| < –5 °C bis –10 °C | ❄❄ mäßiger Frost |
-| < –10 °C bis –15 °C | ❄❄❄ strenger Frost |
-| < –15 °C | ❄❄❄❄ sehr strenger Frost |
+➡️ Details: [`colors/README-colors.md`](colors/README-colors.md)
 
 ---
 
-### 💧 Schwüleklassifikation (nach Taupunkt)
+### ❄️🔥 Frost & Schwüle Anzeige
+Textuelle Anzeige unterhalb des Stationsnamens:
 
-| Taupunkt | Anzeige |
-|---------|---------|
-| ≤ 15,9 °C | keine Schwüle (grün) |
-| ≥ 16,0 °C | Schwüle (gelb) |
+- kein Frost
+- leichter Frost
+- mäßiger Frost
+- strenger Frost
+- sehr strenger Frost
 
----
+Zusätzlich:
+- Schwüle / keine Schwüle (Taupunkt-basiert)
 
-### 🧾 Kombinierte Anzeige (Beispiele)
-
-- `❄❄ mäßiger Frost · keine Schwüle`
-- `kein Frost · Schwüle`
-
----
-
-## 🔹 Voraussetzungen
-
-- WeeWX **4 oder 5**
-- Belchertown-Skin
-- Anzeigeelemente:
-  - `span.outtemp` (Außentemperatur)
-  - `span.dewpoint` (Taupunkt)
+➡️ Details: [`frost-schwauele/README-frost-schwauele.md`](frost-schwauele/README-frost-schwauele.md)
 
 ---
 
-## 🔹 Dateien & Struktur
+## Voraussetzungen
 
-```
-skins/
-└── Belchertown/
-    ├── js/
-    │   └── belchertown-frost-indicator.js
-    ├── index_hook_after_station_info.inc
-    └── skin.conf
-```
+- weewx ≥ 4.x
+- Belchertown Skin
+- JavaScript erlaubt
+- CopyGenerator aktiv
 
 ---
 
-## 🔹 Installation
+## Installation (Kurzfassung)
 
-### 1️⃣ JavaScript-Datei kopieren
+1. JavaScript-Dateien in das Belchertown-Skin kopieren
+2. `skin.conf` → CopyGenerator anpassen
+3. Script per Hook (`index_hook_after_station_info.inc`) einbinden
 
-Die Datei
-
-```
-belchertown-frost-indicator.js
-```
-
-nach folgendes Verzeichnis kopieren:
-
-```
-/etc/weewx/skins/Belchertown/js/
-```
+➡️ Siehe Beispiele: [`examples/`](examples/)
 
 ---
 
-### 2️⃣ Script in die Seite einbinden
+## Screenshots
 
-In der Datei:
-
-```
-index_hook_after_station_info.inc
-```
-
-folgende Zeile ergänzen:
-
-```html
-## Frost- & Schwüle-Anzeige
-<script src="$relative_url/js/belchertown-frost-indicator.js"></script>
-```
+*(optional – später ergänzen)*
 
 ---
 
-### 3️⃣ CopyGenerator konfigurieren
-
-In der Datei:
-
-```
-/etc/weewx/skins/Belchertown/skin.conf
-```
-
-unter `[CopyGenerator]`:
-
-```ini
-copy_once = js/belchertown-frost-indicator.js
-```
-
----
-
-### 4️⃣ WeeWX neu starten
-
-```bash
-sudo systemctl restart weewx
-```
-
----
-
-## 🔹 Lizenz
+## Lizenz
 
 MIT License
